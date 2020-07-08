@@ -14,13 +14,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y git wget build-es
 #RUN apt-get install -y libx11-dev
 #RUN apt-get install -y libgsl0ldbl
 #RUN apt-get install -y libgsl0-dev libopenblas-dev liblapacke-dev
-#RUN apt-get clean
+#RUN apt-get autolean
 
-#RUN conda update -y -n base -c defaults conda 
-RUN conda config --add channels bioconda
-RUN conda config --add channels r
-RUN conda config --add channels conda-forge
-RUN conda install --yes python=3.6 biopython statsmodels pysam plink gffutils genepop trimal simuPOP pip rpy2 r-ggplot2 r-gridextra pygraphviz eigensoft seaborn pexpect pyvcf dendropy networkx reportlab tzlocal
+RUN conda install -y python=3.6
+RUN conda install -y statsmodels pysam pip rpy2 r-ggplot2 r-gridextra pygraphviz seaborn pexpect networkx reportlab tzlocal
+RUN conda install -y -c bioconda gffutils pyvcf dendropy genepop plink trimal eigensoft && conda install -y -c conda-forge simuPOP biopython=1.7
 RUN pip install pygenomics
 
 EXPOSE 9875
